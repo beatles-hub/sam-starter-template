@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+
+  UserStats:
+    Type: AWS::Serverless::Function
+    DependsOn: FunctionRole
+    Properties:
+      Handler: status.handler
+      Runtime: python3.6
+      Timeout: 3
+      MemorySize: 128
+      Role: !GetAtt FunctionRole.Arn
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+
+  FunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: UserStatsLambda
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+
+  FunctionPolicy:
+    Type: AWS::IAM::Policy
+    DependsOn: FunctionRole
+    Properties:
+      PolicyName: UserStatsPolicy
+      Roles: 
+      - !Ref FunctionRole
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "iam:GetUser"
+              - "logs:CreateLogGroup"
+              - "logs:CreateLogStream"
+              - "logs:GetLogEvents"
+              - "logs:PutLogEvents"
+            Resource: "*"
