@@ -169,5 +169,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 * Serverless Application Model Quickstart: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html
 * SAM Template Basics: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html
 * SAM Serverless Resources: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template.html
-* Serverless Application Model Introduction Image: https://github.com/awslabs/serverless-application-model/blob/master/aws_sam_introduction.png
 * AWS API Gateway Documentation: https://docs.aws.amazon.com/apigateway/index.html#lang/en_us
